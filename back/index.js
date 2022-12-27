@@ -17,6 +17,14 @@ app.get('/', (req, res) => {
     res.send('Root');
 });
 
+app.get('/productList', (req, res) => {
+    db.query('SELECT * FROM PRODUCT', (error, rows) => {
+        if(error) throw error;
+        console.log('Products List is : ', rows);
+        res.send(rows);
+    })
+})
+
 app.post('/users', (req, res) => {
 
     db.query(`SELECT userId from users where userId = "${req.body.userId}" and password = "${req.body.password}"`, (error, rows) => {

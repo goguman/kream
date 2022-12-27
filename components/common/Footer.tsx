@@ -2,7 +2,7 @@ const Footer = () => {
     return (
         <div className="footer hidden px-8 py-8 sm:block">
             <div className="inner">
-                <div className="service_area flex justify-between block flex-row pb-10 border-b border-b-gray-200">
+                <div className="service_area flex justify-between block flex-row py-10 border-b border-b-gray-200 border-t border-t-gray-200">
                     <div className="footer_menu flex flex-row">
                         <div className="menu_box w-40">
                             <strong className="menu_title">이용안내</strong>
@@ -59,7 +59,7 @@ const Footer = () => {
                         </div>
                     </div>
                 </div>
-                <div className="corporation_area mt-2">
+                <div className="corporation_area mt-6">
                     <ul className="term_list inline-flex pb-2">
                         <li className="term_item mr-4">
                             <a href="#" className="text-sm">회사소개</a>
