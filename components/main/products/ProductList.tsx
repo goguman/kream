@@ -1,7 +1,6 @@
 import Image from "next/image";
 import {useEffect, useState} from "react";
-import {apis} from "../../../pages/api/home";
-import {useQuery} from "react-query";
+import getProductList from "./getProductList";
 
 const ProductList = ({title, subTitle}) => {
     const [Products, setProducts] = useState([]);
@@ -9,10 +8,7 @@ const ProductList = ({title, subTitle}) => {
     const [Limit, setLimit] = useState(4);
     const [LoadMoreBtn, setLoadMoreBtn] = useState(true);
     const rowLimit = 4;
-    const {isLoading, data} = useQuery("queryKey", apis.get);
-
-    console.log("productList get");
-    console.log(data);
+    const {data} = getProductList();
 
     useEffect(() => {
         let body = {
@@ -20,10 +16,12 @@ const ProductList = ({title, subTitle}) => {
             limit: Limit,
         };
         getProducts(body);
-    }, []);
+    }, [data]);
 
     const getProducts = (body) => {
-        let productInfo = list.slice(body.skip, body.limit);
+        if(data == undefined) return;
+
+        let productInfo = data.slice(body.skip, body.limit);
 
         if(body.loadMore) {
             setProducts([...Products, ...productInfo]);
@@ -31,9 +29,11 @@ const ProductList = ({title, subTitle}) => {
             setProducts(productInfo);
         }
 
-        if(body.skip + rowLimit > list.length) {
+        if(body.skip + rowLimit > data.length) {
             setLoadMoreBtn(false);
         }
+        console.log("Products11");
+        console.log(Products);
     }
 
     const list = [
@@ -113,20 +113,21 @@ const ProductList = ({title, subTitle}) => {
             </div>
             <div className="product_list_wrap flex flex-wrap w-full h-auto px-10">
                 {
+                    data &&
                     Products.map((product, index) =>
                         <div key={index} className="product_item w-1/4 max-h-80 px-2 mb-4">
                             <a href="#" className="item_inner w-full h-60">
                                 <div className=" thumb_box">
-                                    <div className="background rounded-2xl " style={{background:product.color}}>
-                                        <Image className="mx-auto" src="/images/nike01.png" alt=""
-                                            quality={100} width={240} height={240}/>
+                                    <div className="background rounded-2xl " style={{background:"#afafaf"}}>
+                                        <Image className="mx-auto" src={product.THUMBNAIL_PATH} alt=""
+                                               quality={100} width={240} height={240}/>
                                     </div>
                                 </div>
                                 <div className="info_box">
-                                    <div className="brand underline font-bold">{product.brand}</div>
-                                    <div className="name">{product.name}</div>
-                                    <div className="price font-bold">{product.price}</div>
-                                    <div className="text-gray-400 text-xs leading-[0.5rem]">{product.type}</div>
+                                    <div className="brand underline font-bold">{product.BRAND_CODE}</div>
+                                    <div className="name">{product.PRODUCT_NAME}</div>
+                                    <div className="price font-bold">{product.RELEASE_PRICE}원</div>
+                                    <div className="text-gray-400 text-xs leading-[0.5rem]">즉시 구매가</div>
                                 </div>
                             </a>
                         </div>
@@ -134,7 +135,8 @@ const ProductList = ({title, subTitle}) => {
                 }
             </div>
             <div className={`load_more_btn_wrap ${LoadMoreBtn ? "flex" : "hidden"}`}>
-                <button className="load_more_btn mx-auto mt-4 rounded-lg w-30 h-10 text-gray-400 px-6 border" onClick={loadMoreHandler}>
+                <button className="load_more_btn mx-auto mt-4 rounded-lg w-30 h-10 text-gray-400 px-6 border"
+                        onClick={loadMoreHandler}>
                     더보기
                 </button>
             </div>
