@@ -17,7 +17,7 @@ export default function TopBar(){
         setSearchOn(true);
     }
     return (
-        <div className="outline-black z-0 relative">
+        <div className="outline-black z-0 fixed top-0 w-screen bg-white z-40">
             <div className="flex flex-row justify-end space-x-6 h-8  text-sm text-gray-400 font-thin pr-4 items-center max-md:hidden">
                 <div>고객센터</div>
                 <div>관심상품</div>

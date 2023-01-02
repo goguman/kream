@@ -1,6 +1,11 @@
 import Image from "next/image";
+import {useState} from "react";
+import getShortcutList from "./getShortcutList";
 
-const Shortcut = () => {
+const Shortcut = ({title, subTitle, theme}) => {
+    const [Items, setItems] = useState([]);
+    const {data} = getShortcutList(theme);
+
     const shortcuts = [
         {
             color: "#33a",
@@ -34,7 +39,11 @@ const Shortcut = () => {
     ];
 
     return (
-        <div className="shortcut_collection flex mt-12 max-w-screen-xl mx-auto">
+        <div className="shortcut_collection mt-12 max-w-screen-xl mx-auto">
+            <div className="product_title px-10 mb-4">
+                <div className="title font-bold text-xl">{title}</div>
+                <div className="sub_title text-sm text-gray-400">{subTitle}</div>
+            </div>
             <div className="shortcut_items_wrap flex flex-wrap w-full h-auto px-10">
                 {
                     shortcuts.map((shortcut, index) =>

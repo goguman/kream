@@ -1,8 +1,8 @@
 import React, {useLayoutEffect, useRef, useEffect, useState} from "react";
 import SlideButton from "./SlideButton";
 
-
 const Carousel = () => {
+    // const items;
     const slides = ['#33a', '#8c9', '#f3e074', '#1f9f3f', '#000'];
     const [currentIndex, setCurrentIndex] = useState(0);
 
@@ -59,7 +59,7 @@ const Carousel = () => {
                     {
                         slides.map((color, index) =>
                             <div key={index} className="slider-item flex-none w-full h-full">
-                                <a href="components/main/banners#">
+                                <a>
                                     <div className="h-full items-center" style={{background: color}}>
                                     </div>
                                 </a>

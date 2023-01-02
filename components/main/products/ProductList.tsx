@@ -2,13 +2,13 @@ import Image from "next/image";
 import {useEffect, useState} from "react";
 import getProductList from "./getProductList";
 
-const ProductList = ({title, subTitle}) => {
+const ProductList = ({title, subTitle, theme}) => {
     const [Products, setProducts] = useState([]);
     const [Skip, setSkip] = useState(0);
     const [Limit, setLimit] = useState(4);
     const [LoadMoreBtn, setLoadMoreBtn] = useState(true);
     const rowLimit = 4;
-    const {data} = getProductList();
+    const {data} = getProductList(theme);
 
     useEffect(() => {
         let body = {
@@ -36,64 +36,6 @@ const ProductList = ({title, subTitle}) => {
         console.log(Products);
     }
 
-    const list = [
-        {
-            color: "#33a",
-            brand: "Nike",
-            name: "Nike1",
-            price: "210,000원",
-            type: "즉시 구매가"
-        }, {
-            color: "#8c9",
-            brand: "Nike",
-            name: "Nike2",
-            price: "274,000원",
-            type: "즉시 구매가"
-        }, {
-            color: "#a331a1",
-            brand: "Adidas",
-            name: "Adidas1",
-            price: "150,000원",
-            type: "즉시 구매가"
-        }, {
-            color: "#f3e074",
-            brand: "IAB Studio",
-            name: "IAB Studio1",
-            price: "245,000원",
-            type: "즉시 구매가"
-        }, {
-            color: "#af9fff",
-            brand: "Jordan",
-            name: "Jordan1",
-            price: "482,000원",
-            type: "즉시 구매가"
-        }, {
-            color: "#000",
-            brand: "Adidas",
-            name: "Adidas2",
-            price: "2,112,000원",
-            type: "즉시 구매가"
-        }, {
-            color: "#b1e34a",
-            brand: "IAB Studio",
-            name: "IAB Studio2",
-            price: "90,000원",
-            type: "즉시 구매가"
-        }, {
-            color: "#8c9",
-            brand: "Nike",
-            name: "Nike2",
-            price: "274,000원",
-            type: "즉시 구매가"
-        }, {
-            color: "#000",
-            brand: "Adidas",
-            name: "Adidas2",
-            price: "2,112,000원",
-            type: "즉시 구매가"
-        }
-    ];
-
     const loadMoreHandler = () => {
         let body = {
             skip: Skip + rowLimit,
@@ -118,7 +60,7 @@ const ProductList = ({title, subTitle}) => {
                         <div key={index} className="product_item w-1/4 max-h-80 px-2 mb-4">
                             <a href="#" className="item_inner w-full h-60">
                                 <div className=" thumb_box">
-                                    <div className="background rounded-2xl " style={{background:"#afafaf"}}>
+                                    <div className="background rounded-2xl " style={{background:"#dae1fa"}}>
                                         <Image className="mx-auto" src={product.THUMBNAIL_PATH} alt=""
                                                quality={100} width={240} height={240}/>
                                     </div>

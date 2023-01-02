@@ -33,7 +33,7 @@ app.listen(PORT, () => {
     console.log(`Server run : http://localhost:${PORT}/`)
 });
 
-app.get('/productList', (req, res) => {
+app.get('/justDroppedList', (req, res) => {
     const sqlString =
         'SELECT ' +
         'BRAND_CODE, ' +

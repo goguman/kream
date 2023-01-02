@@ -3,19 +3,19 @@ import axios from "axios";
 
 let param;
 
-const getJustDroppedList = async () => {
+const getTopList = async () => {
     const {data} = await axios.get(
-        `http://localhost:4000/justDroppedList`
+        `http://localhost:4000/getShortcutList`
     );
-    console.log("getJustDroppedList");
+    console.log("getShortcutList");
     console.log(data);
     return data;
 }
 
 export default (theme:string) => {
     let res;
-    if(theme == "justDropped") {
-        res = useQuery(theme, getJustDroppedList);
+    if(theme == "topList") {
+        res = useQuery(theme, getTopList);
     }
 
     const {status, data, error} = res;
