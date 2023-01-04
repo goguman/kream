@@ -60,7 +60,7 @@ const ProductList = ({title, subTitle, theme}) => {
                         <div key={index} className="product_item w-1/4 max-h-80 px-2 mb-4">
                             <a href="#" className="item_inner w-full h-60">
                                 <div className=" thumb_box">
-                                    <div className="background rounded-2xl " style={{background:"#dae1fa"}}>
+                                    <div className="background rounded-xl " style={{background:"#dae1fa"}}>
                                         <Image className="mx-auto" src={product.THUMBNAIL_PATH} alt=""
                                                quality={100} width={240} height={240}/>
                                     </div>

@@ -1,8 +1,8 @@
 const Footer = () => {
     return (
-        <div className="footer hidden px-8 py-8 sm:block">
+        <div className="footer hidden px-8 pb-12 sm:block border-t border-t-gray-200">
             <div className="inner">
-                <div className="service_area flex justify-between block flex-row py-10 border-b border-b-gray-200 border-t border-t-gray-200">
+                <div className="service_area flex justify-between block flex-row py-10 border-b border-b-gray-200">
                     <div className="footer_menu flex flex-row">
                         <div className="menu_box w-40">
                             <strong className="menu_title">이용안내</strong>
@@ -52,8 +52,8 @@ const Footer = () => {
                                 </dt>
                             </dl>
                         </div>
-                        <div className="service_btn_box mt-2">
-                            <a href="#" className="bg-black text-white text-xs p-1">
+                        <div className="service_btn_box mt-3">
+                            <a href="#" className="bg-black text-white text-xs p-2">
                                 자주 묻는 질문
                             </a>
                         </div>
