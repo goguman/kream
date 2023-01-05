@@ -62,7 +62,7 @@ const Carousel = () => {
     }, 5000);
 
     return (
-        <div className="slider-area w-full h-[46vw]">
+        <div className="slider-area w-full h-[46vw] max-h-[480px]">
             <div className="slider w-full h-full relative flex items-center overflow-hidden">
                 <SlideButton direction="prev" onClick={() => handleSwipe((-1))} />
                 <SlideButton direction="next" onClick={() => handleSwipe((1))} />
@@ -81,10 +81,10 @@ const Carousel = () => {
                         )
                     }
                 </div>
-                <div className="flex absolute bottom-4 h-6 text-xs right-1/2 translate-x-1/2">
+                <div className="flex absolute bottom-4 h-2 text-xs right-1/2 translate-x-1/2">
                     {
                         Array.from({length: bannerList.length}).map((item, index) => (
-                            <div className="z-50 m-2 h-full w-6 hover:cursor-pointer bg-gray-500 opacity-30 rounded-xl hover:bg-yellow-400 active:bg-yellow-400"
+                            <div className="z-50 m-2 h-full w-2 hover:cursor-pointer bg-gray-500 opacity-30 rounded-xl hover:bg-yellow-400 active:bg-yellow-400"
                                  key={index} onClick={()=>moveToIndex(index)} >
                             </div>
                         ))

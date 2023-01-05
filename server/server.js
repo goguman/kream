@@ -48,3 +48,17 @@ app.get('/justDroppedList', (req, res) => {
         res.send(rows);
     })
 });
+
+app.get('/getTopShortcutList', (req, res) => {
+    const sqlString =
+        'SELECT ' +
+        'TITLE, ' +
+        'THUMBNAIL_PATH, ' +
+        'DIRECTION_URL ' +
+        'FROM MAIN_TOP_SHORTCUT';
+    db.query(sqlString, (error, rows) => {
+        if(error) throw error;
+        console.log('Products List is : ', rows);
+        res.send(rows);
+    })
+});
