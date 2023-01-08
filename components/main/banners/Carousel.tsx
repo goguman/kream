@@ -1,4 +1,4 @@
-import React, {useLayoutEffect, useRef, useEffect, useState} from "react";
+import React, {useRef, useEffect, useState} from "react";
 import SlideButton from "./SlideButton";
 import Image from "next/image";
 
@@ -16,7 +16,9 @@ const Carousel = () => {
             url:'/images/banner/carousel/kakaopay_discount.jpg',
             background:'#ffe818'
         }
-    ]
+    ];
+
+
 
     function handleSwipe(direction) {
         let index;
@@ -84,7 +86,8 @@ const Carousel = () => {
                 <div className="flex absolute bottom-4 h-2 text-xs right-1/2 translate-x-1/2">
                     {
                         Array.from({length: bannerList.length}).map((item, index) => (
-                            <div className="z-50 m-2 h-full w-2 hover:cursor-pointer bg-gray-500 opacity-30 rounded-xl hover:bg-yellow-400 active:bg-yellow-400"
+                            <div className={`z-10 m-2 h-full w-2 hover:cursor-pointer bg-gray-500 opacity-30 rounded-xl hover:bg-yellow-400 active:bg-yellow-400 
+                                    ${index==currentIndex?"bg-amber-400":"bg-gray-500"}`}
                                  key={index} onClick={()=>moveToIndex(index)} >
                             </div>
                         ))
