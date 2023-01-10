@@ -10,16 +10,29 @@ const getTopShortcutList = async () => {
     console.log("getTopList");
     console.log(data);
     return data;
+};
+
+const getBrandFocusList = async () => {
+    const {data} = await axios.get(
+        `http://localhost:4000/getBrandFocusList`
+    );
+    console.log("getBrandFocusList");
+    console.log(data);
+    return data;
 }
 
 export default (theme:string) => {
     let res;
     if(theme == "topList") {
         res = useQuery(theme, getTopShortcutList);
-        console.log("getshortcut res >>>> ");
+        console.log("get shortcut res >>>> ");
+        console.log(res);
+    } else if(theme == "brandFocus") {
+        res = useQuery(theme, getBrandFocusList);
+        console.log("get shortcut res >>>> ");
         console.log(res);
     } else {
-        return {data: [{msg:"nodata"}]};
+        return {data: "nodata"};
     }
 
     const {status, data, error} = res;

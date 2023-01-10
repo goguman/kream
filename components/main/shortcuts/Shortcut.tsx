@@ -50,13 +50,13 @@ const Shortcut = ({title, subTitle, theme}) => {
                 <div className="title font-bold text-xl">{title}</div>
                 <div className="sub_title text-sm text-gray-400">{subTitle}</div>
             </div>
-            <div className="shortcut_items_wrap flex flex-wrap w-full h-[28vw] px-10">
+            <div className="shortcut_items_wrap flex flex-wrap w-full h-auto px-10">
                 {
                     Items.map((shortcut, index) =>
-                        <div key={index} className="shortcut_item text-center flex flex-col px-[0.6vw] w-1/5 h-1/2 mb-2">
-                            <div className="shortcut_item_img_wrap w-full h-4/6 bg-gray-500 rounded-xl flex ">
-                                <a href={shortcut.DIRECTION_URL} className="h-full w-full overflow-clip flex justify-center items-center rounded-xl">
-                                    <Image className="rounded-xl h-full w-fit min-w-fit" src={shortcut.THUMBNAIL_PATH}
+                        <div key={index} className="shortcut_item text-center flex flex-col px-[0.6vw] w-1/5 h-auto mb-2">
+                            <div className="shortcut_item_img_wrap w-full max-h-[100px] h-[10vw] bg-gray-500 rounded-2xl flex ">
+                                <a href={shortcut.DIRECTION_URL?shortcut.DIRECTION_URL:'#'} className="h-full w-full overflow-clip flex justify-center items-center rounded-xl">
+                                    <Image className="rounded-md h-full w-fit min-w-fit" src={shortcut.THUMBNAIL_PATH}
                                            alt="jordan" quality={100} width={1000} height={1000}/>
                                 </a>
                             </div>

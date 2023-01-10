@@ -1,4 +1,4 @@
-import React, {useRef, useEffect, useState} from "react";
+import React, {useLayoutEffect, useRef, useEffect, useState} from "react";
 import SlideButton from "./SlideButton";
 import Image from "next/image";
 
@@ -16,9 +16,7 @@ const Carousel = () => {
             url:'/images/banner/carousel/kakaopay_discount.jpg',
             background:'#ffe818'
         }
-    ];
-
-
+    ]
 
     function handleSwipe(direction) {
         let index;

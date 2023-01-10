@@ -62,3 +62,12 @@ app.get('/getTopShortcutList', (req, res) => {
         res.send(rows);
     })
 });
+
+app.get('/getBrandFocusList', (req, res) => {
+    const sqlString = 'SELECT CODE, NAME_KR AS TITLE, THUMBNAIL_PATH FROM BRAND ORDER BY CODE ASC';
+    db.query(sqlString, (error, rows) => {
+        if(error) throw error;
+        console.log('BRAND FOCUS LIST is : ', rows);
+        res.send(rows);
+    })
+});

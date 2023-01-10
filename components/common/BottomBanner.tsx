@@ -3,7 +3,7 @@ import Image from "next/image";
 const BottomBanner = () => {
     return (
         <div className="banner_bottom md:flex w-full mt-12 text-white"
-             style={{textShadow:"-1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;"}}>
+             style={{textShadow:"-1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000"}}>
             <a href="#" className="banner_box bg-[#565656] flex relative h-[200px] md:w-1/2 px-8 pt-10">
                 <div className="banner_info align-middle">
                     <div className="info_subtitle text-xs font-bold">SERVICE GUIDE</div>

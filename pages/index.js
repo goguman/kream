@@ -9,7 +9,7 @@ export default function Home() {
             <Carousel />
             <Shortcut theme="topList"/>
             <ProductList title="Just Dropped" subTitle="발매 상품" theme="justDropped"/>
-            <Shortcut title="Brand Focus" subTitle="추천 브랜드"/>
+            <Shortcut title="Brand Focus" subTitle="추천 브랜드" theme={"brandFocus"}/>
             <SingleBanner imgPath="/images/banner/sneakers.jpg" url="#"/>
             <ProductList title="Most Popular" subTitle="인기 상품" theme="justDropped"/>
             <SingleBanner imgPath="/images/banner/wallets.jpg" url="#"/>

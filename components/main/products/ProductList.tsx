@@ -77,8 +77,8 @@ const ProductList = ({title, subTitle, theme}) => {
                 }
             </div>
             <div className={`load_more_btn_wrap ${LoadMoreBtn ? "flex" : "hidden"}`}>
-                <button className="load_more_btn mx-auto mt-4 rounded-lg w-30 h-10 text-gray-400 px-6 border"
-                        onClick={loadMoreHandler}>
+                <button className="load_more_btn mx-auto mt-4 rounded-lg w-30 h-10 text-gray-500 px-6
+                            border border-gray-300" onClick={loadMoreHandler}>
                     더보기
                 </button>
             </div>
