@@ -6,7 +6,7 @@ import BottomBanner from "../components/common/BottomBanner";
 import {useCallback, useEffect, useState} from "react";
 import {nanoid} from "@reduxjs/toolkit";
 import axios from "axios";
-import {PaginationResponse} from "./api/infinitescroll/PaginationResponse";
+// import {PaginationResponse} from "./api/infinitescroll/PaginationResponse";
 
 // const PAGE_SIZE = 4;
 
@@ -81,7 +81,7 @@ export default function Home() {
     useEffect(() => {
         const handleScroll = () => {
             const { scrollTop, offsetHeight } = document.documentElement;
-            if (window.innerHeight + scrollTop >= offsetHeight) {
+            if (window.innerHeight + scrollTop >= offsetHeight-1) {
                 setFetching(true);
             }
         }
