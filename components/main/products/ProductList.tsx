@@ -58,7 +58,7 @@ const ProductList = ({title, subTitle, theme}) => {
                     data &&
                     Products.map((product, index) =>
                         <div key={index} className="product_item w-1/4 max-h-80 px-2 mb-4">
-                            <a href="#" className="item_inner w-full h-60">
+                            <a href="#" className="item_inner w-full">
                                 <div className=" thumb_box">
                                     <div className="background rounded-xl " style={{background:"#dae1fa"}}>
                                         <Image className="mx-auto" src={product.THUMBNAIL_PATH} alt=""
@@ -67,7 +67,7 @@ const ProductList = ({title, subTitle, theme}) => {
                                 </div>
                                 <div className="info_box">
                                     <div className="brand underline font-bold">{product.BRAND_CODE}</div>
-                                    <div className="name">{product.PRODUCT_NAME}</div>
+                                    <div className="name overflow-hidden">{product.PRODUCT_NAME}</div>
                                     <div className="price font-bold">{product.RELEASE_PRICE}원</div>
                                     <div className="text-gray-400 text-xs leading-[0.5rem]">즉시 구매가</div>
                                 </div>

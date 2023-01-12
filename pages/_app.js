@@ -1,22 +1,33 @@
 import '../styles/globals.css'
 import TopBar from "../components/common/TopBar";
-import wrapper, {persistor, store} from "../store";
 import {Provider} from "react-redux";
 import Footer from "../components/common/Footer";
+import {SessionProvider} from "next-auth/react"
 import {QueryClient, QueryClientProvider} from "react-query";
+import {useRouter} from 'next/router';
+import {useEffect} from "react";
 
-const queryClient = new QueryClient();
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps: {session, ...pageProps} }) {
+    const router = useRouter();
+    useEffect(() => prePage, [router.asPath]);
+    const queryClient = new QueryClient();
+    const prePage = () => {
+        const storage = globalThis?.sessionStorage;
+        if (!storage) return;
+        const prePath = storage.getItem('currentPath');
+        storage.setItem("prevPath", prePath || '/');
+        storage.setItem("currentPath", globalThis.location.pathname);
+    }
   return (
-      <Provider store={store}>
+      <SessionProvider session={session} refetchInterval={1 * 10} >
           <QueryClientProvider client={queryClient}>
               <TopBar/>
               <Component {...pageProps}/>
               <Footer/>
           </QueryClientProvider>
-      </Provider>
+      </SessionProvider>
   );
 }
 
-export default wrapper.withRedux(MyApp);
+export default MyApp;

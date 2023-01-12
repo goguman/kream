@@ -53,10 +53,11 @@ const Shortcut = ({title, subTitle, theme}) => {
             <div className="shortcut_items_wrap flex flex-wrap w-full h-auto px-10">
                 {
                     Items.map((shortcut, index) =>
-                        <div key={index} className="shortcut_item text-center flex flex-col px-[0.6vw] w-1/5 h-auto mb-2">
-                            <div className="shortcut_item_img_wrap w-full max-h-[100px] h-[10vw] bg-gray-500 rounded-2xl flex ">
-                                <a href={shortcut.DIRECTION_URL?shortcut.DIRECTION_URL:'#'} className="h-full w-full overflow-clip flex justify-center items-center rounded-xl">
-                                    <Image className="rounded-md h-full w-fit min-w-fit" src={shortcut.THUMBNAIL_PATH}
+                        <div key={index} className="shortcut_item text-center px-[0.6vw] w-1/5 h-auto mb-2 flex flex-col items-center text-[0.8rem] md:text-sm">
+                            <div className="shortcut_item_img_wrap w-[10vw] md:w-full max-h-[100px] h-[10vw] rounded-full md:rounded-2xl flex ">
+                                <a href={shortcut.DIRECTION_URL?shortcut.DIRECTION_URL:'#'}
+                                   className="h-full w-full overflow-clip flex justify-center items-center rounded-full md:rounded-xl">
+                                    <Image className="h-full w-fit min-w-fit" src={shortcut.THUMBNAIL_PATH}
                                            alt="jordan" quality={100} width={1000} height={1000}/>
                                 </a>
                             </div>

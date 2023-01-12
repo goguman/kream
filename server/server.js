@@ -71,3 +71,22 @@ app.get('/getBrandFocusList', (req, res) => {
         res.send(rows);
     })
 });
+
+app.get('/register', (req, res) => {
+    const {email} = req.query;
+    const sqlString = `SELECT email FROM User WHERE email='${email}'`;
+        db.query(sqlString, (error, rows) => {
+        if(error) throw error;
+        console.log('userEmail List is : ', rows);
+        res.send(rows);
+    })
+});
+
+app.post('/signUp', async (req, res)=> {
+    const { email, password, size } = req.body;
+    const sqlString = `INSERT INTO User(id, email, password, size) VALUES('${email}','${email}', '${password}', '${size}')`;
+    db.query(sqlString, (error, rows) =>{
+        if(error) throw error;
+        console.log('회원가입 성공');
+    })
+})

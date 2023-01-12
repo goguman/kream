@@ -6,7 +6,8 @@ import BottomBanner from "../components/common/BottomBanner";
 import {useCallback, useEffect, useState} from "react";
 import {nanoid} from "@reduxjs/toolkit";
 import axios from "axios";
-// import {PaginationResponse} from "./api/infinitescroll/PaginationResponse";
+import {PaginationResponse} from "./api/infinitescroll/PaginationResponse";
+import Image from "next/image";
 
 // const PAGE_SIZE = 4;
 
@@ -96,7 +97,7 @@ export default function Home() {
     }, [isFetching]);
 
     return (
-        <div className="break-keep pt-[96px]">
+        <div className="break-keep pt-[96px] w-full">
             <Carousel />
             <Shortcut title={undefined} subTitle={undefined} theme="topList"/>
             <ProductList title="Just Dropped" subTitle="발매 상품" theme="justDropped"/>
@@ -105,7 +106,9 @@ export default function Home() {
                 content
             ))
             }
-            {isFetching && hasNextPage && <div>Loading...</div>}
+            {/*{isFetching && hasNextPage && <div>Loading...</div>}*/}
+            {isFetching && hasNextPage && <div className={"flex items-center w-full"}><Image src={"/images/gif/loading.gif"} alt={"loading"}
+                                                      width={200} height={200} quality={100}/></div>}
             <BottomBanner />
         </div>
     )
