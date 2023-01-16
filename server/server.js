@@ -41,7 +41,7 @@ app.get('/justDroppedList', (req, res) => {
         'PRODUCT_INFO, ' +
         'PRODUCT_NAME, ' +
         'FORMAT(RELEASE_PRICE, 0) AS RELEASE_PRICE ' +
-        'FROM PRODUCT';
+        'FROM TEST_P';
     db.query(sqlString, (error, rows) => {
         if(error) throw error;
         console.log('Products List is : ', rows);
