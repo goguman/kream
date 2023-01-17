@@ -12,23 +12,22 @@ import Image from "next/image";
 // const PAGE_SIZE = 4;
 
 export default function Home() {
-    const [page, setPage] = useState(0);
     const [from, setFrom] = useState(0);
     const [contents, setContents] = useState([]);
     const [isFetching, setFetching] = useState(false);
     const [hasNextPage, setNextPage] = useState(true);
     const contentsList = [
-        <SingleBanner imgPath="/images/banner/sneakers.jpg" url="#" key={nanoid()} />,
+        <SingleBanner imgPath="/images/banner/sneakers.jpg" backgroundColor={"#f4ebe9"} url="#" key={nanoid()} />,
         <ProductList title="Most Popular" subTitle="인기 상품" theme="justDropped" key={nanoid()} />,
-        <SingleBanner imgPath="/images/banner/wallets.jpg" url="#" key={nanoid()} />,
+        <SingleBanner imgPath="/images/banner/wallets.jpg" backgroundColor={"#fc532b"} url="#" key={nanoid()} />,
         <ProductList title="New In" subTitle="신규 등록 상품" theme="justDropped" key={nanoid()} />,
-        <SingleBanner imgPath="/images/banner/luxury.jpg" url="#" key={nanoid()} />,
+        <SingleBanner imgPath="/images/banner/luxury.jpg" backgroundColor={"#b7ae9f"} url="#" key={nanoid()} />,
         <ProductList title="Most_viewed Luxuries" subTitle="한 주간 클릭이 많았던 럭셔리" theme="justDropped" key={nanoid()} />,
-        <SingleBanner imgPath="/images/banner/new_items.jpg" url="#" key={nanoid()} />,
+        <SingleBanner imgPath="/images/banner/new_items.jpg" backgroundColor={"#d7dfe3"} url="#" key={nanoid()} />,
         <ProductList title="Numbering New Items" subTitle="넘버링 우먼 & 단독 상품" theme="justDropped" key={nanoid()} />,
-        <SingleBanner imgPath="/images/banner/skate_board.jpg" url="#" key={nanoid()} />,
+        <SingleBanner imgPath="/images/banner/skate_board.jpg" backgroundColor={"#d1dbe3"} url="#" key={nanoid()} />,
         <ProductList title="Do a Kickflip!" subTitle="스케이트보드만의 자유로움" theme="justDropped" key={nanoid()} />,
-        <SingleBanner imgPath="/images/banner/kenzo_by_nigo.jpg" url="#" key={nanoid()} />,
+        <SingleBanner imgPath="/images/banner/kenzo_by_nigo.jpg" backgroundColor={"#e8dcc7"} url="#" key={nanoid()} />,
         <ProductList title="Let's Nigo" subTitle="Nigo와 함께" theme="justDropped" key={nanoid()} />
     ];
 
@@ -41,41 +40,14 @@ export default function Home() {
         let nextContents;
         let to;
         to = from+4;
-        // if(page == 1) {
-        //     nextContents =
-        //         <div key={page}>
-        //             <SingleBanner imgPath="/images/banner/sneakers.jpg" url="#"/>
-        //             <ProductList title="Most Popular" subTitle="인기 상품" theme="justDropped"/>
-        //             <SingleBanner imgPath="/images/banner/wallets.jpg" url="#"/>
-        //             <ProductList title="New In" subTitle="신규 등록 상품" theme="justDropped"/>
-        //         </div>
-        // } else if(page == 2) {
-        //     nextContents =
-        //         <div key={page}>
-        //             <SingleBanner imgPath="/images/banner/luxury.jpg" url="#"/>
-        //             <ProductList title="Most_viewed Luxuries" subTitle="한 주간 클릭이 많았던 럭셔리" theme="justDropped"/>
-        //             <SingleBanner imgPath="/images/banner/new_items.jpg" url="#"/>
-        //             <ProductList title="Numbering New Items" subTitle="넘버링 우먼 & 단독 상품" theme="justDropped"/>
-        //         </div>
-        // } else if(page == 3) {
-        //     nextContents =
-        //         <div key={page}>
-        //             <SingleBanner imgPath="/images/banner/skate_board.jpg" url="#"/>
-        //             <ProductList title="Do a Kickflip!" subTitle="스케이트보드만의 자유로움" theme="justDropped"/>
-        //             <SingleBanner imgPath="/images/banner/kenzo_by_nigo.jpg" url="#"/>
-        //             <ProductList title="Let's Nigo" subTitle="Nigo와 함께" theme="justDropped"/>
-        //         </div>
-        // }
         nextContents = contentsList.slice(from, to);
         setContents(contents.concat(nextContents));
         console.log("contents");
         console.log(from);
         console.log(nextContents);
         console.log(contents);
-        // setPage(page + 1);
         setFrom(to);
         setNextPage(to < contentsList.length);
-        // setNextPage(page<=3);
         setFetching(false);
     }, [from]);
 
@@ -106,7 +78,6 @@ export default function Home() {
                 content
             ))
             }
-            {/*{isFetching && hasNextPage && <div>Loading...</div>}*/}
             {isFetching && hasNextPage && <div className={"flex items-center w-full"}><Image src={"/images/gif/loading.gif"} alt={"loading"}
                                                       width={200} height={200} quality={100}/></div>}
             <BottomBanner />

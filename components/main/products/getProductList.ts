@@ -7,8 +7,8 @@ const getJustDroppedList = async () => {
     const {data} = await axios.get(
         `http://localhost:4000/justDroppedList`
     );
-    console.log("getJustDroppedList");
-    console.log(data);
+    // console.log("getJustDroppedList");
+    // console.log(data);
     return data;
 }
 

@@ -39,8 +39,8 @@ const Shortcut = ({title, subTitle, theme}) => {
     const {data} = (theme) ? getShortcutList(theme) : {data:"nodata"};
 
     useEffect(() => {
-        console.log("data >> ");
-        console.log(data);
+        // console.log("data >> ");
+        // console.log(data);
         if(data && data !== "nodata") setItems(data);
     }, [data]);
 

@@ -20,7 +20,7 @@ const shop1 = () => {
     const [clothesSizeVisible, setClothesSizeVisible] = useState(false);
     const [sortVisible, setSortVisible] = useState(false);
     return (
-        <div className="md:container md:mx-auto flex py-[90px]">
+        <div className="md:container md:mx-auto flex">
         <div className=" py-16 text-center w-screen overflow-hidden	">
             <h1 className="font-black text-3xl">SHOP</h1>
             <div className="flex max-w-[1200px] w-[auto] mx-auto my-0 ">
