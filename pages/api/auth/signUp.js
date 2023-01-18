@@ -10,7 +10,10 @@ export default async function signUp(req, res) {
                     {
                         email : user.email,
                         password : await hash(user.password, 12),
-                        size : user.size
+                        size : user.size,
+                        message_receive : user.message_receive,
+                        email_receive : user.email_receive,
+                        image : user.image
                     }
             });
         res.status(201).json({

@@ -17,7 +17,8 @@ const loginForm = () => {
    const [ isEmail, setIsEmail ] = useState(true);
    const [ isPassword, setIsPassword ] = useState(true);
    const [prePage, setPrePage] = useState('');
-    const checkRef = useRef([]);
+   const checkRef = useRef([]);
+   const router = useRouter();
    const didMount = useRef(false);
    const { data: session, status } = useSession();
     const changeHandler = useCallback((e) => {
@@ -44,7 +45,7 @@ const loginForm = () => {
       const res = await signIn('email-password-credential', {
           email,
           password,
-          redirect: false
+          redirect : false
       });
       if(res.error){
           let timerInterval
@@ -68,6 +69,8 @@ const loginForm = () => {
                   clearInterval(timerInterval)
               }
           })
+      }else {
+          router.push(prePage);
       }
    }
 

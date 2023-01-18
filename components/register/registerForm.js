@@ -24,6 +24,9 @@ const registerForm = () => {
     const [ isEmail, setIsEmail ] = useState(true);
     const [ isPassword, setIsPassword ] = useState(true);
     const [isTerms, setIsTerms] = useState(false);
+    const [isMessage, setIsMessage] = useState(false);
+    const [recEmail, setRecEmail] = useState(false);
+
     const [choice, setChoice] = useState(
         {
             option1 : false,
@@ -42,12 +45,19 @@ const registerForm = () => {
     const onSubmit = async (e) => {
         e.preventDefault();
         if(isEmail && isPassword && size && isTerms) {
+            console.log(choice);
             try {
+                console.log("@@@@");
+                console.log(isMessage);
+                console.log(isEmail);
                  axios.post('/api/auth/signUp',
                     {
                         email : email,
                         password : password,
-                        size : size
+                        size : size,
+                        message_receive : isMessage,
+                        email_receive : recEmail,
+                        image : '/images/mypage/defaultUser.png'
                     },
                     {
                         headers: {
@@ -95,8 +105,7 @@ const registerForm = () => {
         }else {
             checkRef.current['pwdDiv'].style.color = 'black';
         }
-
-    }, [isEmail,isPassword]);
+    }, [isEmail,isPassword, isMessage]);
     useEffect(() => {
         if(isEmail) {
             axios
@@ -154,7 +163,7 @@ const registerForm = () => {
                             <FontAwesomeIcon icon={faChevronRight}/>
                         </div>
                     </div>
-                   <Terms setIsTerms={setIsTerms} />
+                   <Terms setIsTerms={setIsTerms} setRecEmail={setRecEmail} setIsMessage={setIsMessage}/>
                     <div className="pt-8 w-full ">
                         {isEmail && isPassword && isTerms ?
                         <button className="border-2 w-full h-12 rounded-lg font-bold text-white"
@@ -167,7 +176,7 @@ const registerForm = () => {
                     </div>
                 </div>
                 {openSize ? (
-                    <PopUpSize openSize={openSize} size={size} setOpenSize={setOpenSize} setSize={setSize}/>) : null}
+                    <PopUpSize openSize={openSize} size={size} setOpenSize={setOpenSize} setSize={setSize} setMessage={setIsMessage} />) : null}
             </div>
         </div>
     )

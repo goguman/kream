@@ -43,6 +43,8 @@ model User {
   password      String?
   emailVerified DateTime?
   image         String?
+  email_receive Boolean? @default(false)
+  message_receive Boolean? @default(false)
   accounts      Account[]
   sessions      Session[]
 }

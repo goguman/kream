@@ -11,7 +11,7 @@ export default function Home() {
     ];
 
     return (
-        <div className="break-keep pt-[96px] w-full">
+        <div className="break-keep pt-[88px] w-full">
             <MainTopBar currentTab={currentTab} setCurrentTab={setCurrentTab}/>
             {
                 <div className={"pt-10"}>

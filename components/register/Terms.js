@@ -199,6 +199,8 @@ const Terms = (props) => {
         }
         if (choice.optionAll) {
             checkDiv.current['allCh'].style.background = 'black';
+            props.setRecEmail(true);
+            props.setIsMessage(true);
         }else{
             checkDiv.current['allCh'].style.background = 'white';
         }
@@ -225,16 +227,22 @@ const Terms = (props) => {
             }
             if (choice.option2) {
                 checkDiv.current['opCh2'].style.background = 'black';
+                props.setIsMessage(true);
             } else {
                 checkDiv.current['opCh2'].style.background = 'white';
+                props.setIsMessage(false);
             }
             if (choice.option3) {
                 checkDiv.current['opCh3'].style.background = 'black';
+                props.setRecEmail(true);
             } else {
                 checkDiv.current['opCh3'].style.background = 'white';
+                props.setRecEmail(false);
             }
             if(choice.option1 && choice.option2 && choice.option3){
                 checkDiv.current['allCh'].style.background = 'black';
+                props.setRecEmail(true);
+                props.setIsMessage(true);
             }
         }
         if(essential.optionAll){
@@ -242,7 +250,7 @@ const Terms = (props) => {
         }else {
             props.setIsTerms(false);
         }
-        console.log(essential);
+
     }, [essential, moreEssential, choice, moreChoice]);
 
     return (

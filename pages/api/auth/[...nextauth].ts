@@ -29,17 +29,22 @@ export const options = {
                     },
                     select : {
                         email : true,
-                        password : true
+                        password : true,
+                        id : true
                     }
                 });
                 if(!user){
-                    throw new Error('No user found!');
+                    throw new Error('없는 사용자');
                 }
                 const isValid = await compare(credentials.password, user.password);
                 if(!isValid){
                     throw new Error('잘못된 비번');
                 }
-                return { email : user.email}
+                if(isValid && user ){
+                    return { email : user.email, id : user.id}
+                }
+
+                return null;
             }
         }),
         Kakao({
@@ -78,12 +83,13 @@ export const options = {
         encryption: true,
     },
         callbacks: {
-            async jwt({ token, account }) {
+            async jwt({ token, account, user }) {
                 if (account) {
                     token.accessToken = account.access_token;
                     token.provider = account.provider;
                     token.userId = account.userId;
                 }
+
                 return token;
             },
             async session({ session, token }) {
