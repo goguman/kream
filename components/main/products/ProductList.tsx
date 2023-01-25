@@ -29,11 +29,9 @@ const ProductList = ({title, subTitle, theme}) => {
             setProducts(productInfo);
         }
 
-        if(body.skip + rowLimit > data.length) {
+        if(body.skip + rowLimit >= data.length) {
             setLoadMoreBtn(false);
         }
-        console.log("Products11");
-        console.log(Products);
     }
 
     const loadMoreHandler = () => {
@@ -59,15 +57,13 @@ const ProductList = ({title, subTitle, theme}) => {
                     Products.map((product, index) =>
                         <div key={index} className="product_item w-1/4 max-h-80 px-2 mb-4">
                             <a href="#" className="item_inner w-full">
-                                <div className=" thumb_box">
-                                    <div className="background rounded-xl " style={{background:"#dae1fa"}}>
-                                        <Image className="mx-auto" src={product.THUMBNAIL_PATH} alt=""
-                                               quality={100} width={240} height={240}/>
-                                    </div>
+                                <div className="thumb_box">
+                                    <Image className="mx-auto rounded-xl" style={{background:"#dae1fa"}}
+                                           src={product.THUMBNAIL_PATH} alt="" quality={100} width={240} height={240}/>
                                 </div>
                                 <div className="info_box">
-                                    <div className="brand underline font-bold">{product.BRAND_CODE}</div>
-                                    <div className="name overflow-hidden">{product.PRODUCT_NAME}</div>
+                                    <div className="brand underline font-bold">{product.BRAND_NAME}</div>
+                                    <div className="name overflow-hidden leading-4 pb-1">{product.MODEL_NAME}</div>
                                     <div className="price font-bold">{product.RELEASE_PRICE}원</div>
                                     <div className="text-gray-400 text-xs leading-[0.5rem]">즉시 구매가</div>
                                 </div>

@@ -36,12 +36,13 @@ app.listen(PORT, () => {
 app.get('/justDroppedList', (req, res) => {
     const sqlString =
         'SELECT ' +
-        'BRAND_CODE, ' +
-        'THUMBNAIL_PATH, ' +
-        'PRODUCT_INFO, ' +
-        'PRODUCT_NAME, ' +
-        'FORMAT(RELEASE_PRICE, 0) AS RELEASE_PRICE ' +
-        'FROM TEST_P';
+        'J.MODEL_CODE, ' +
+        'B.NAME_EN AS BRAND_NAME, ' +
+        'J.MODEL_NAME, ' +
+        'FORMAT(RELEASE_PRICE, 0) AS RELEASE_PRICE, ' +
+        'J.THUMBNAIL_PATH ' +
+        'FROM JUST_DROPPED J, BRAND B ' +
+        'WHERE J.BRAND_CODE = B.BRAND_CODE';
     db.query(sqlString, (error, rows) => {
         if(error) throw error;
         console.log('Products List is : ', rows);
@@ -75,7 +76,7 @@ app.get('/getBrandFocusList', (req, res) => {
 app.get('/register', (req, res) => {
     const {email} = req.query;
     const sqlString = `SELECT email FROM User WHERE email='${email}'`;
-        db.query(sqlString, (error, rows) => {
+    db.query(sqlString, (error, rows) => {
         if(error) throw error;
         console.log('userEmail List is : ', rows);
         res.send(rows);
