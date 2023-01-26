@@ -52,24 +52,24 @@ const Recommendation = () => {
 
     const contentsList = [
         <SingleBanner imgPath="/images/banner/sneakers.jpg" backgroundColor={"#f4ebe9"} url="#" key={nanoid()} />,
-        <ProductList title="Most Popular" subTitle="인기 상품" theme="justDropped" key={nanoid()} />,
+        <ProductList title="Most Popular" subTitle="인기 상품" themeName="newIn" key={nanoid()} />,
         <SingleBanner imgPath="/images/banner/wallets.jpg" backgroundColor={"#fc532b"} url="#" key={nanoid()} />,
-        <ProductList title="New In" subTitle="신규 등록 상품" theme="justDropped" key={nanoid()} />,
+        <ProductList title="New In" subTitle="신규 등록 상품" themeName="newIn" key={nanoid()} />,
         <SingleBanner imgPath="/images/banner/luxury.jpg" backgroundColor={"#b7ae9f"} url="#" key={nanoid()} />,
-        <ProductList title="Most_viewed Luxuries" subTitle="한 주간 클릭이 많았던 럭셔리" theme="justDropped" key={nanoid()} />,
+        <ProductList title="Most_viewed Luxuries" subTitle="한 주간 클릭이 많았던 럭셔리" themeName="justDropped" key={nanoid()} />,
         <SingleBanner imgPath="/images/banner/new_items.jpg" backgroundColor={"#d7dfe3"} url="#" key={nanoid()} />,
-        <ProductList title="Numbering New Items" subTitle="넘버링 우먼 & 단독 상품" theme="justDropped" key={nanoid()} />,
+        <ProductList title="Numbering New Items" subTitle="넘버링 우먼 & 단독 상품" themeName="newIn" key={nanoid()} />,
         <SingleBanner imgPath="/images/banner/skate_board.jpg" backgroundColor={"#d1dbe3"} url="#" key={nanoid()} />,
-        <ProductList title="Do a Kickflip!" subTitle="스케이트보드만의 자유로움" theme="justDropped" key={nanoid()} />,
+        <ProductList title="Do a Kickflip!" subTitle="스케이트보드만의 자유로움" themeName="justDropped" key={nanoid()} />,
         <SingleBanner imgPath="/images/banner/kenzo_by_nigo.jpg" backgroundColor={"#e8dcc7"} url="#" key={nanoid()} />,
-        <ProductList title="Let's Nigo" subTitle="Nigo와 함께" theme="justDropped" key={nanoid()} />
+        <ProductList title="Let's Nigo" subTitle="Nigo와 함께" themeName="newIn" key={nanoid()} />
     ];
     return (
         <div className={"recommendation_wrap"}>
             <Carousel />
-            <Shortcut title={undefined} subTitle={undefined} theme="topList"/>
-            <ProductList title="Just Dropped" subTitle="발매 상품" theme="justDropped"/>
-            <Shortcut title="Brand Focus" subTitle="추천 브랜드" theme={"brandFocus"}/>
+            <Shortcut title={undefined} subTitle={undefined} theme="topList" key={nanoid()}/>
+            <ProductList title="Just Dropped" subTitle="발매 상품" themeName="justDropped" key={nanoid()}/>
+            <Shortcut title="Brand Focus" subTitle="추천 브랜드" theme={"brandFocus"} key={nanoid()}/>
             {contents.map((content, index) => (
                 content
             ))

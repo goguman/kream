@@ -1,7 +1,6 @@
 import Image from "next/image";
 import {useEffect, useState} from "react";
 import getShortcutList from "./getShortcutList";
-import {undef} from "@redux-saga/is";
 
 const Shortcut = ({title, subTitle, theme}) => {
     const testItems = [

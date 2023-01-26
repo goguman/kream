@@ -2,13 +2,14 @@ import Image from "next/image";
 import {useEffect, useState} from "react";
 import getProductList from "./getProductList";
 
-const ProductList = ({title, subTitle, theme}) => {
+const ProductList = ({title, subTitle, themeName, key}) => {
+    const theme = themeName;
     const [Products, setProducts] = useState([]);
     const [Skip, setSkip] = useState(0);
     const [Limit, setLimit] = useState(4);
     const [LoadMoreBtn, setLoadMoreBtn] = useState(true);
     const rowLimit = 4;
-    const {data} = getProductList(theme);
+    const {data} = getProductList(theme, key);
 
     useEffect(() => {
         let body = {
@@ -21,7 +22,7 @@ const ProductList = ({title, subTitle, theme}) => {
     const getProducts = (body) => {
         if(data == undefined) return;
 
-        let productInfo = data.slice(body.skip, body.limit);
+        const productInfo = data.slice(body.skip, body.limit);
 
         if(body.loadMore) {
             setProducts([...Products, ...productInfo]);
@@ -63,7 +64,7 @@ const ProductList = ({title, subTitle, theme}) => {
                                 </div>
                                 <div className="info_box">
                                     <div className="brand underline font-bold">{product.BRAND_NAME}</div>
-                                    <div className="name overflow-hidden leading-4 pb-1">{product.MODEL_NAME}</div>
+                                    <div className="name overflow-hidden leading-4 pb-1 font">{product.MODEL_NAME}</div>
                                     <div className="price font-bold">{product.RELEASE_PRICE}원</div>
                                     <div className="text-gray-400 text-xs leading-[0.5rem]">즉시 구매가</div>
                                 </div>

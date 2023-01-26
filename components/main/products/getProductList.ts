@@ -1,24 +1,16 @@
 import {useQuery} from "react-query";
 import axios from "axios";
 
-let param;
-
-const getJustDroppedList = async () => {
+const getProductList = async (theme) => {
     const {data} = await axios.get(
-        `http://localhost:4000/justDroppedList`
+        `http://localhost:4000/getProductList?theme=${theme}`
     );
-    // console.log("getJustDroppedList");
-    // console.log(data);
     return data;
-}
+};
 
-export default (theme:string) => {
-    let res;
-    if(theme == "justDropped") {
-        res = useQuery(theme, getJustDroppedList);
-    }
-
-    const {status, data, error} = res;
+export default (theme:string, key:number) => {
+    const {status, data, error} =
+        useQuery(theme+key, ()=>getProductList(theme));
 
     return {status, data, error};
 }
