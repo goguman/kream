@@ -52,15 +52,18 @@ const ProductList = ({title, subTitle, themeName, key}) => {
                 <div className="title font-bold text-xl">{title}</div>
                 <div className="sub_title text-sm text-gray-400">{subTitle}</div>
             </div>
-            <div className="product_list_wrap flex flex-wrap w-full h-auto px-10">
+            <div className="product_list_wrap flex md:flex-wrap w-full h-auto px-10 overflow-x-scroll md:overflow-auto">
                 {
                     data &&
                     Products.map((product, index) =>
-                        <div key={index} className="product_item w-1/4 max-h-80 px-2 mb-4">
-                            <a href="#" className="item_inner w-full">
-                                <div className="thumb_box">
-                                    <Image className="mx-auto rounded-xl" style={{background:"#dae1fa"}}
+                        <div key={index} className="product_item w-[210px] md:w-1/4 px-2 mb-4">
+                            <a href="#" className="item_inner px-1 w-[210px] md:w-full block">
+                                <div className="thumb_box mx-auto w-fit relative">
+                                    <Image className="rounded-xl w-full" style={{background:"#dae1fa"}}
                                            src={product.THUMBNAIL_PATH} alt="" quality={100} width={240} height={240}/>
+                                    <div className="btn_wish absolute right-1.5 bottom-1.5 max-w-[24px] max-h-[24px] w-1/12 h-1/12">
+                                        <Image className="w-full h-full z-10" src={"/images/bookmark_empty.png"} alt={"bookmark"} width={240} height={240} quality={100} />
+                                    </div>
                                 </div>
                                 <div className="info_box">
                                     <div className="brand underline font-bold">{product.BRAND_NAME}</div>
