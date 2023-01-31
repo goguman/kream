@@ -70,7 +70,7 @@ const Recommendation = () => {
             <Shortcut title={undefined} subTitle={undefined} theme="topList" key={nanoid()}/>
             <ProductList title="Just Dropped" subTitle="발매 상품" themeName="justDropped" key={nanoid()}/>
             <Shortcut title="Brand Focus" subTitle="추천 브랜드" theme={"brandFocus"} key={nanoid()}/>
-            {contents.map((content, index) => (
+            {contents.map((content) => (
                 content
             ))
             }

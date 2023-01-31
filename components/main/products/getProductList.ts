@@ -8,9 +8,9 @@ const getProductList = async (theme) => {
     return data;
 };
 
-export default (theme:string, key:number) => {
+export default (theme:string) => {
     const {status, data, error} =
-        useQuery(theme+key, ()=>getProductList(theme));
+        useQuery(theme, ()=>getProductList(theme));
 
     return {status, data, error};
 }

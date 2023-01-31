@@ -1,15 +1,16 @@
 import Image from "next/image";
 import {useEffect, useState} from "react";
 import getProductList from "./getProductList";
+import {nanoid} from "nanoid";
 
-const ProductList = ({title, subTitle, themeName, key}) => {
+const ProductList = ({title, subTitle, themeName}) => {
     const theme = themeName;
     const [Products, setProducts] = useState([]);
     const [Skip, setSkip] = useState(0);
     const [Limit, setLimit] = useState(4);
     const [LoadMoreBtn, setLoadMoreBtn] = useState(true);
     const rowLimit = 4;
-    const {data} = getProductList(theme, key);
+    const {data} = getProductList(theme);
 
     useEffect(() => {
         let body = {
@@ -47,12 +48,12 @@ const ProductList = ({title, subTitle, themeName, key}) => {
     };
 
     return (
-        <div className="home_products mt-12 max-w-screen-xl mx-auto">
+        <div className="home_products mt-12 max-w-screen-xl mx-auto" key={nanoid()}>
             <div className="product_title px-10 mb-4">
                 <div className="title font-bold text-xl">{title}</div>
                 <div className="sub_title text-sm text-gray-400">{subTitle}</div>
             </div>
-            <div className="product_list_wrap flex md:flex-wrap w-full h-auto px-10 overflow-x-scroll md:overflow-auto">
+            <div className="product_list_wrap flex md:flex-wrap w-full h-auto px-10 overflow-x-scroll scrollbar-hide md:overflow-auto">
                 {
                     data &&
                     Products.map((product, index) =>
