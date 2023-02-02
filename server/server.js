@@ -73,6 +73,22 @@ app.get('/getProductList', (req, res) => {
     });
 });
 
+app.get('/getProduct', (req, res) => {
+    const modelCode = req.query["modelCode"];
+
+    const sqlString =
+        'SELECT ' +
+        'MODEL_NAME, ' +
+        'MODEL_SUBNAME, ' +
+        'THUMBNAIL_PATH ' +
+        'FROM MODEL ' +
+        `WHERE MODEL_CODE = ${modelCode}`;
+    db.query(sqlString, (error, rows) => {
+        if(error) throw error;
+        res.send(rows);
+    })
+});
+
 app.get('/getTopShortcutList', (req, res) => {
     const sqlString =
         'SELECT ' +
