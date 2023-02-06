@@ -89,6 +89,21 @@ app.get('/getProduct', (req, res) => {
     })
 });
 
+app.get('/getSizeList', (req, res) => {
+    const modelCode = req.query["modelCode"];
+
+    const sqlString =
+        'SELECT ' +
+        'MODEL_CODE, ' +
+        'SIZE ' +
+        'FROM PRODUCT ' +
+        `WHERE MODEL_CODE = ${modelCode}`;
+    db.query(sqlString, (error, rows) => {
+        if(error) throw error;
+        res.send(rows);
+    })
+});
+
 app.get('/getTopShortcutList', (req, res) => {
     const sqlString =
         'SELECT ' +

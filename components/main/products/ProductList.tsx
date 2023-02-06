@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import getProductList from "./getProductList";
 import {nanoid} from "nanoid";
-import AddWish from "../AddWish";
+import AddWish from "./AddWish";
 import Product from "./Product";
 
 const ProductList = ({title, subTitle, themeName}) => {
