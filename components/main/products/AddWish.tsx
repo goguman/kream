@@ -1,16 +1,22 @@
-import {useRef} from "react";
+import {useRef, useState} from "react";
 import getProduct from "./getProduct";
 import Image from "next/image";
 import getSizeList from "./getSizeList";
 
 const AddWish = (props) => {
     console.log("modelCode: ");
-    console.log(typeof props.modelCode);
+    // console.log(typeof props.modelCode);
     console.log(props.modelCode);
+    console.log(props.wishListArray);
 
     const outside = useRef();
     const {data:modelInfo} = getProduct(props.modelCode);
     const {data:sizeList} = getSizeList(props.modelCode);
+    let isWished = false;
+
+    function checkWished(productCode) {
+        isWished = props.wishListArray.indexOf(productCode) >= 0;
+    }
 
     return (
         <div className="wish_modal z-50 fixed bg-[#09090990] w-screen h-screen inset-0"
@@ -37,20 +43,21 @@ const AddWish = (props) => {
                         ) : null
                     }
                     <div className="wish_size_list w-full h-[288px] pl-8 mt-2 flex flex-wrap overflow-y-scroll cursor-pointer">
-                        {sizeList && sizeList.map((item) => (
-                            <div className="w-[120px] h-[52px] m-1 rounded-xl border border-gray-300
-                                        flex flex-col items-center justify-center text-[0.9rem]">
-                                <p className="font-bold">
-                                    {item.SIZE}
-                                </p>
+                        {sizeList && sizeList.map((item) => {
+                            checkWished(item.PRODUCT_CODE);
+                            return <div className={`w-[120px] h-[52px] m-1 rounded-xl flex flex-col items-center justify-center text-[0.9rem]
+                                        ${isWished ? "border-2 border-black" : "border border-gray-300"}`}>
+                                <p className="font-bold">{item.SIZE}</p>
                                 <p>
-                                    <Image className="w-[16px] h-[16px]" src={"/images/bookmark_empty.png"} alt={"bookmark"} width={240} height={240} quality={100} />
+                                    <Image className="w-[16px] h-[16px]"
+                                           src={isWished ? "/images/bookmark_fill.png" : "/images/bookmark_empty.png"}
+                                           alt={"bookmark"} width={240} height={240} quality={100}/>
                                 </p>
                             </div>
-                        ))
+                        })
                         }
                     </div>
-                    <div className="btn_confirm border border-gray-300 w-[120px] py-2 px-10 mt-3 rounded-xl cursor-pointer"
+                    <div className="btn_confirm border border-gray-300 w-[120px] py-2 px-10 mt-7 rounded-xl cursor-pointer"
                          onClick={()=>props.setOpenWishPop(false)}>
                         확인
                     </div>

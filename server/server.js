@@ -94,10 +94,27 @@ app.get('/getSizeList', (req, res) => {
 
     const sqlString =
         'SELECT ' +
+        'PRODUCT_CODE, ' +
         'MODEL_CODE, ' +
         'SIZE ' +
         'FROM PRODUCT ' +
         `WHERE MODEL_CODE = ${modelCode}`;
+    db.query(sqlString, (error, rows) => {
+        if(error) throw error;
+        res.send(rows);
+    })
+});
+
+app.get('/checkWish', (req, res) => {
+    const userId = req.query["userId"];
+    const modelCode = req.query["modelCode"];
+
+    const sqlString =
+        'SELECT ' +
+        'PRODUCT_CODE ' +
+        'FROM WISH ' +
+        `WHERE USER_ID = "${userId}" ` +
+        `AND PRODUCT_CODE IN (SELECT PRODUCT_CODE FROM PRODUCT WHERE MODEL_CODE=${modelCode})`;
     db.query(sqlString, (error, rows) => {
         if(error) throw error;
         res.send(rows);

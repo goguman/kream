@@ -12,6 +12,7 @@ const ProductList = ({title, subTitle, themeName}) => {
     const [Limit, setLimit] = useState(4);
     const [LoadMoreBtn, setLoadMoreBtn] = useState(true);
     const [modelCode, setModelCode] = useState(null);
+    const [wishListArray, setWishListArray] = useState([]);
     const rowLimit = 4;
     const {data} = getProductList(theme);
 
@@ -58,6 +59,8 @@ const ProductList = ({title, subTitle, themeName}) => {
         getProducts(body);
     };
 
+
+
     return (
         <div className="home_products mt-12 max-w-screen-xl mx-auto" key={nanoid()}>
             <div className="product_title px-10 mb-4">
@@ -69,7 +72,7 @@ const ProductList = ({title, subTitle, themeName}) => {
                     data &&
                     products.map((product, index) =>
                         <Product product={product} index={index} setOpenWishPop={setOpenWishPop}
-                                 setModelCode={setModelCode}/>
+                                 setWishListArray={setWishListArray} setModelCode={setModelCode} keyId={nanoid()}/>
                     )
                 }
             </div>
@@ -79,7 +82,8 @@ const ProductList = ({title, subTitle, themeName}) => {
                     더보기
                 </button>
             </div>
-            {openWishPop ? <AddWish openWishPop={openWishPop} setOpenWishPop={setOpenWishPop} modelCode={modelCode}/> : null}
+            {openWishPop ? <AddWish openWishPop={openWishPop} setOpenWishPop={setOpenWishPop}
+                                    wishListArray={wishListArray} modelCode={modelCode}/> : null}
         </div>
     );
 };
