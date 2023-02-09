@@ -7,8 +7,8 @@ const getTopShortcutList = async () => {
     const {data} = await axios.get(
         `http://localhost:4000/getTopShortcutList`
     );
-    // console.log("getTopList");
-    // console.log(data);
+    console.log("getTopList");
+    console.log(data);
     return data;
 };
 
@@ -16,8 +16,8 @@ const getBrandFocusList = async () => {
     const {data} = await axios.get(
         `http://localhost:4000/getBrandFocusList`
     );
-    // console.log("getBrandFocusList");
-    // console.log(data);
+    console.log("getBrandFocusList");
+    console.log(data);
     return data;
 }
 
@@ -32,10 +32,10 @@ export default (theme:string) => {
     }
 
     const {status, data, error} = res;
-    console.log("status, data, error >>>> ");
-    console.log(status);
-    console.log(data);
-    console.log(error);
+    // console.log("status, data, error >>>> ");
+    // console.log(status);
+    // console.log(data);
+    // console.log(error);
 
     return {status, data, error};
 }

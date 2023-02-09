@@ -1,19 +1,21 @@
 import '../styles/globals.css'
 import TopBar from "../components/common/TopBar";
-import wrapper, {persistor, store} from "../store";
-import {Provider} from "react-redux";
-import {PersistGate} from "redux-persist/integration/react";
 import {SessionProvider} from "next-auth/react"
 import {useRouter} from 'next/router';
 import {useEffect} from 'react';
 import {QueryClient, QueryClientProvider} from 'react-query';
-import {ReqctQueryDevtools} from 'react-query/devtools';
 import Footer from '../components/common/Footer';
 
 function MyApp({Component, pageProps: {session, ...pageProps}}) {
     const router = useRouter();
     useEffect(() => prePage, [router.asPath]);
-    const queryClient = new QueryClient();
+    const queryClient = new QueryClient({
+        defaultOptions:{
+            queries:{
+                staleTime: 1000*600,
+            }
+        }
+    });
     const prePage = () => {
         const storage = globalThis?.sessionStorage;
         if (!storage) return;
@@ -26,6 +28,7 @@ function MyApp({Component, pageProps: {session, ...pageProps}}) {
             <QueryClientProvider client={queryClient} >
                 <TopBar/>
                 <Component {...pageProps} />
+                <div id={"modal-root"}></div>
                 <Footer />
             </QueryClientProvider>
         </SessionProvider>

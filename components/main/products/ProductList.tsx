@@ -1,8 +1,9 @@
-import {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import getProductList from "./getProductList";
 import {nanoid} from "nanoid";
 import AddWish from "./AddWish";
 import Product from "./Product";
+import ModalPortal from "../../common/ModalPortal";
 
 const ProductList = ({title, subTitle, themeName}) => {
     const theme = themeName;
@@ -59,10 +60,14 @@ const ProductList = ({title, subTitle, themeName}) => {
         getProducts(body);
     };
 
+    const getNanoId = useCallback(() => {
+        return nanoid();
+    }, []);
+
 
 
     return (
-        <div className="home_products mt-12 max-w-screen-xl mx-auto" key={nanoid()}>
+        <div className="home_products mt-12 max-w-screen-xl mx-auto">
             <div className="product_title px-10 mb-4">
                 <div className="title font-bold text-xl">{title}</div>
                 <div className="sub_title text-sm text-gray-400">{subTitle}</div>
@@ -70,9 +75,9 @@ const ProductList = ({title, subTitle, themeName}) => {
             <div className="product_list_wrap flex md:flex-wrap w-full h-auto px-10 overflow-x-scroll scrollbar-hide md:overflow-auto">
                 {
                     data &&
-                    products.map((product, index) =>
-                        <Product product={product} index={index} setOpenWishPop={setOpenWishPop}
-                                 setWishListArray={setWishListArray} setModelCode={setModelCode} keyId={nanoid()}/>
+                    products.map((product) =>
+                        <Product product={product} setOpenWishPop={setOpenWishPop} queryId={product.MODEL_CODE}
+                                 setWishListArray={setWishListArray} setModelCode={setModelCode} key={product.MODEL_CODE}/>
                     )
                 }
             </div>
@@ -83,8 +88,12 @@ const ProductList = ({title, subTitle, themeName}) => {
                 </button>
             </div>
             {openWishPop ? <AddWish openWishPop={openWishPop} setOpenWishPop={setOpenWishPop}
-                                    wishListArray={wishListArray} modelCode={modelCode}/> : null}
+                                    wishListArray={wishListArray} modelCode={modelCode} key={"WishPopLayer"}/> : null}
+            {/*<ModalPortal>*/}
+            {/*{openWishPop ? <AddWish openWishPop={openWishPop} setOpenWishPop={setOpenWishPop}*/}
+            {/*                        wishListArray={wishListArray} modelCode={modelCode} key={getNanoId()}/> : null}*/}
+            {/*</ModalPortal>*/}
         </div>
     );
 };
-export default ProductList;
+export default React.memo(ProductList);

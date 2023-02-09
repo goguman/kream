@@ -1,7 +1,8 @@
-import {useRef, useState} from "react";
+import React, {useRef} from "react";
 import getProduct from "./getProduct";
 import Image from "next/image";
 import getSizeList from "./getSizeList";
+import {nanoid} from "nanoid";
 
 const AddWish = (props) => {
     console.log("modelCode: ");
@@ -12,6 +13,11 @@ const AddWish = (props) => {
     const outside = useRef();
     const {data:modelInfo} = getProduct(props.modelCode);
     const {data:sizeList} = getSizeList(props.modelCode);
+
+    // useLayoutEffect(()=>{
+    //     const {data:sizeList} = getSizeList(props.modelCode);
+    // },[props.modelCode]);
+
     let isWished = false;
 
     function checkWished(productCode) {
@@ -46,7 +52,7 @@ const AddWish = (props) => {
                         {sizeList && sizeList.map((item) => {
                             checkWished(item.PRODUCT_CODE);
                             return <div className={`w-[120px] h-[52px] m-1 rounded-xl flex flex-col items-center justify-center text-[0.9rem]
-                                        ${isWished ? "border-2 border-black" : "border border-gray-300"}`}>
+                                        ${isWished ? "border-2 border-black" : "border border-gray-300"}`} key={nanoid()}>
                                 <p className="font-bold">{item.SIZE}</p>
                                 <p>
                                     <Image className="w-[16px] h-[16px]"
@@ -66,4 +72,4 @@ const AddWish = (props) => {
         </div>
     );
 };
-export default AddWish;
+export default React.memo(AddWish);
