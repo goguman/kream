@@ -14,10 +14,6 @@ const AddWish = (props) => {
     const {data:modelInfo} = getProduct(props.modelCode);
     const {data:sizeList} = getSizeList(props.modelCode);
 
-    // useLayoutEffect(()=>{
-    //     const {data:sizeList} = getSizeList(props.modelCode);
-    // },[props.modelCode]);
-
     let isWished = false;
 
     function checkWished(productCode) {

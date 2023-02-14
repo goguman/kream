@@ -3,7 +3,7 @@ import getProductList from "./getProductList";
 import {nanoid} from "nanoid";
 import AddWish from "./AddWish";
 import Product from "./Product";
-import ModalPortal from "../../common/ModalPortal";
+import {useSession} from "next-auth/react";
 
 const ProductList = ({title, subTitle, themeName}) => {
     const theme = themeName;
@@ -16,6 +16,7 @@ const ProductList = ({title, subTitle, themeName}) => {
     const [wishListArray, setWishListArray] = useState([]);
     const rowLimit = 4;
     const {data} = getProductList(theme);
+    const {data:session, status} = useSession();
 
     useEffect(() => {
         let body = {
@@ -74,9 +75,9 @@ const ProductList = ({title, subTitle, themeName}) => {
             </div>
             <div className="product_list_wrap flex md:flex-wrap w-full h-auto px-10 overflow-x-scroll scrollbar-hide md:overflow-auto">
                 {
-                    data &&
+                    data && status!=="loading" &&
                     products.map((product) =>
-                        <Product product={product} setOpenWishPop={setOpenWishPop} queryId={product.MODEL_CODE}
+                        <Product product={product} setOpenWishPop={setOpenWishPop} queryId={product.MODEL_CODE} session={session} status={status}
                                  setWishListArray={setWishListArray} setModelCode={setModelCode} key={product.MODEL_CODE}/>
                     )
                 }
@@ -89,10 +90,6 @@ const ProductList = ({title, subTitle, themeName}) => {
             </div>
             {openWishPop ? <AddWish openWishPop={openWishPop} setOpenWishPop={setOpenWishPop}
                                     wishListArray={wishListArray} modelCode={modelCode} key={"WishPopLayer"}/> : null}
-            {/*<ModalPortal>*/}
-            {/*{openWishPop ? <AddWish openWishPop={openWishPop} setOpenWishPop={setOpenWishPop}*/}
-            {/*                        wishListArray={wishListArray} modelCode={modelCode} key={getNanoId()}/> : null}*/}
-            {/*</ModalPortal>*/}
         </div>
     );
 };

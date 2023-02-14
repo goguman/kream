@@ -3,12 +3,12 @@ import {useSession} from "next-auth/react";
 import checkWish from "./checkWish";
 import React from "react";
 
-const Product = ({product, setOpenWishPop, queryId,
+const Product = ({product, setOpenWishPop, queryId, session, status,
                      setModelCode, setWishListArray}) => {
-    const {data:session, status} = useSession();
+    // const {data:session, status} = useSession();
     console.log("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@userId :");
     console.log(session);
-    const {data:wishList} = checkWish(status==="authenticated"?session.userId:"", product.MODEL_CODE, queryId);
+    const {data:wishList} = checkWish(session?session.userId:"", product.MODEL_CODE, queryId);
     console.log("queryId : " + queryId);
     console.log("modelCode : " + product.MODEL_CODE);
     console.log("wishList : ");
@@ -38,7 +38,7 @@ const Product = ({product, setOpenWishPop, queryId,
         console.log("##################@@@@@@@@@@@@@@@@@@@ wishList:");
         console.log(wishList);
 
-        if(wishList!==undefined) {
+        if(wishList!==undefined && status==="authenticated") {
             setModelCode(product.MODEL_CODE);
             changeWishListArray(wishList);
             setOpenWishPop(true);

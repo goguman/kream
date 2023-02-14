@@ -28,7 +28,6 @@ function MyApp({Component, pageProps: {session, ...pageProps}}) {
             <QueryClientProvider client={queryClient} >
                 <TopBar/>
                 <Component {...pageProps} />
-                <div id={"modal-root"}></div>
                 <Footer />
             </QueryClientProvider>
         </SessionProvider>
